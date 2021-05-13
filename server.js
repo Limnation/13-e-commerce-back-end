@@ -20,4 +20,5 @@ sequelize.sync({ force: true }).then(() => {
   });
 });
 
+// calling the required seedALL function from /seeds/index.js
 seedAll;
