@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
 });
 
 // get one product
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   // find a single product by its `id`
   try {
     const productData = await Product.findOne({
@@ -68,7 +68,7 @@ router.get("/:id", (req, res) => {
 });
 
 // create new product
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -77,7 +77,13 @@ router.post("/", (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-  Product.create(req.body)
+  Product.create({
+    product_name: req.body.product_name,
+    price: req.body.price,
+    stock: req.body.stock,
+    category_id: req.body.category_id,
+    tagIds: req.body.tagIds,
+  })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
       if (req.body.tagIds.length) {
@@ -100,7 +106,7 @@ router.post("/", (req, res) => {
 });
 
 // update product
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
@@ -141,7 +147,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
 });
 
