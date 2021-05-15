@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container .video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+}
+
+.video {
+  position: absolute;
+  width: 100%;
+}
+
+/* Medium devices (Desktops, 1722px and up) */
+@media only screen and (min-width: 1722px) {
+  .container {
+    width: 100%;
+  }
+
+  .video {
+    width: 1722px;
+  }
+}
